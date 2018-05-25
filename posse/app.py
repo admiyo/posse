@@ -23,7 +23,9 @@ api = Api(app, version='1.0', title='Posse',
     description='RBAC Policy Management',
 )
 
-
+@app.route('/ui')
+def showSignUp():
+    return render_template('index.html')
 
 @api.route("/services")
 @api.doc()
