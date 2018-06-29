@@ -20,8 +20,7 @@ def upgrade():
     endpoint  = op.create_table(
         'endpoint', 
         sa.Column('id', sa.String(length=64), primary_key=True),
-        sa.Column('service_id', sa.String(length=64))
-
+        sa.Column('service_id', sa.String(length=64)))
 
 def downgrade():
     pass

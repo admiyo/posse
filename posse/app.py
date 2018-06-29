@@ -40,6 +40,8 @@ class Services(Resource):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM service")
         data = cursor.fetchall() 
+        if not data:
+            data = dict()
         return data;
     
 
@@ -51,6 +53,8 @@ class Endpoints(Resource):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM endpoint")
         data = cursor.fetchall() 
+        if not data:
+            data = dict()
         return data;
 
 
