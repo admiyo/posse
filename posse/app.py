@@ -10,14 +10,19 @@ from flask_restplus import Resource
 
 
 app = Flask(__name__)
-mysql = MySQL(cursorclass=DictCursor)
- 
-# MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'keystone'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'keystone'
-app.config['MYSQL_DATABASE_DB'] = 'keystone'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
+
+
+if True:
+    mysql = MySQL(cursorclass=DictCursor)
+    # MySQL configurations
+    app.config['MYSQL_DATABASE_USER'] = 'posse'
+    app.config['MYSQL_DATABASE_PASSWORD'] = 'posse'
+    app.config['MYSQL_DATABASE_DB'] = 'posse'
+    app.config['MYSQL_DATABASE_HOST'] = '172.17.0.2'
+    mysql.init_app(app)
+else:
+    pass
+
 
 api = Api(app, version='1.0', title='Posse',
     description='RBAC Policy Management',

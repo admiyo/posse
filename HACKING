@@ -1,0 +1,47 @@
+Here is what I did to get started.  YMMV
+It roughly follows 
+
+https://hub.docker.com/_/mariadb/
+
+Setup docker in order to run Database:
+
+yum install docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+#get the group without starting a new session
+newgrp docker
+
+sudo systemctl start docker
+
+docker run --name some-mariadb -e MYSQL_ROOT_PASSWORD=keystone -d mariadb:latest
+
+connect to MySQL
+
+docker run -it --link some-mariadb:mysql --rm mariadb sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+
+Find the IP address using
+
+docker inspect some-mariadb | grep IPAddress
+For example, I get:
+ "IPAddress": "172.17.0.2",
+
+and connect using
+
+mysql --host 172.17.0.2 -uroot -pkeystone
+
+and initialze the datbase with
+
+cat initdb.sql |  mysql --host 172.17.0.2 -uroot -pkeystone
+
+
+
+Posse is built using python 3.6.  To get these libraries on RHEL.
+sudo yum install python36
+
+activate the venv.
+. ./venv/bin/activate
+
+export FLASK_APP=posse/app.py
+
+flask run
+
