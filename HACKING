@@ -46,5 +46,10 @@ export FLASK_APP=posse/app.py
 flask run
 
 
+To upload the JSON files:
 
+ curl -X PUT http://127.0.0.1:5000/service/glance/policy -d  @samples/glance.policy.json  -H "Content-Type:application/json"
+ curl -X PUT http://127.0.0.1:5000/service/keystone/policy -d  @samples/keystone.policy.v3cloudsample.json  -H "Content-Type:application/json" 
 
+To Upload the YAML file (for now):
+  curl -X PUT http://127.0.0.1:5000/service/nova/policy --data-binary  @samples/nova.policy.yaml   -H "Content-type: text/x-yaml" 
