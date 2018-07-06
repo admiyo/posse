@@ -41,6 +41,13 @@ sudo yum install python36
 activate the venv.
 . ./venv/bin/activate
 
+
+Upgrade the database using Alembic
+
+```
+alembic upgrade head
+```
+
 export FLASK_APP=posse/app.py
 
 flask run
@@ -53,3 +60,11 @@ To upload the JSON files:
 
 To Upload the YAML file (for now):
   curl -X PUT http://127.0.0.1:5000/service/nova/policy --data-binary  @samples/nova.policy.yaml   -H "Content-type: text/x-yaml" 
+
+
+
+
+To Add new Alembiv migrations:
+
+alembic revision -m "create account table"
+
